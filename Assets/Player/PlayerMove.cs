@@ -19,13 +19,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private KeyCode dashKey;
     [SerializeField] private float dashSpeedMultiplier;
 
-    public float dashCoolDown;
-    public float dashDuration;
+    [SerializeField] private float dashCoolDown;
+    [SerializeField] private float dashDuration;
 
+    //Variables de control de cooldown
     private bool isJumping;
     private bool isDashing;
     private bool canDash;
     private float nextPossibleDashTime;
+
+    //Propiedades
+    public float DashCoolDown { get => dashCoolDown; set => dashCoolDown = value; }
+    public float DashDuration { get => dashDuration; set => dashDuration = value; }
+
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
@@ -51,7 +57,7 @@ public class PlayerMove : MonoBehaviour
             charController.Move(Vector3.down * charController.height / 2 * slopeForce * Time.deltaTime);
 
         JumpInput();
-        Boost();
+        DashInput();
     }
 
     private bool OnSlope()
@@ -93,12 +99,12 @@ public class PlayerMove : MonoBehaviour
         isJumping = false;
     }
 
-    private void Boost()
+    private void DashInput()
     {
         
         if (Input.GetKeyDown(dashKey) && canDash && Time.time >= nextPossibleDashTime)
         {
-            nextPossibleDashTime = Time.time + dashCoolDown;
+            nextPossibleDashTime = Time.time + DashCoolDown;
             canDash = false;
             isDashing = true;
             StartCoroutine(dashEvent());
@@ -110,7 +116,7 @@ public class PlayerMove : MonoBehaviour
         
         float OGSpeed = movementSpeed;
         movementSpeed *= dashSpeedMultiplier;
-        yield return new WaitForSecondsRealtime(dashDuration);
+        yield return new WaitForSeconds(DashDuration);
         movementSpeed = OGSpeed;
         charController.Move(new Vector3(0,0,0));
         isDashing = false;
