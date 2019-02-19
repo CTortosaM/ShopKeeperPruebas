@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4440158, g: 0.48713976, b: 0.53906167, a: 1}
+  m_IndirectSpecularColor: {r: 0.4440155, g: 0.48713928, b: 0.53906155, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,7 +401,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpMultiplier: 4
+  jumpMultiplier: 5
   jumpKey: 32
   dashKey: 304
   dashSpeedMultiplier: 3
