@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootingMechanics : MonoBehaviour
 {
-
+    
     public Animator animator;
     private bool isShooting;
     // Start is called before the first frame update
